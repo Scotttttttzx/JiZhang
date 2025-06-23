@@ -1,0 +1,247 @@
+@import "../index/index.wxss";
+
+/* 可根据需要添加账户详情页面的专属样式 */
+.wide-block {
+  width: 96vw;
+  margin-left: 2vw;
+  margin-right: 2vw;
+}
+
+/* pages/account-detail/account-detail.wxss */
+page {
+  background-color: #f7f8fa;
+}
+
+.container {
+  padding-bottom: 40rpx;
+}
+
+/* 账户信息头 */
+.account-header {
+  color: #fff;
+  padding: 40rpx;
+  position: relative;
+  overflow: hidden;
+  border-bottom-left-radius: 40rpx;
+  border-bottom-right-radius: 40rpx;
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.account-icon {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50rpx;
+  margin: 0 auto 20rpx;
+  border: 4rpx solid rgba(255, 255, 255, 0.5);
+}
+
+.account-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 24rpx;
+}
+
+.balance-wrapper .balance-label {
+  font-size: 28rpx;
+  opacity: 0.8;
+  display: block;
+}
+
+.balance-wrapper .balance-value {
+  font-size: 56rpx;
+  font-weight: bold;
+  letter-spacing: 1rpx;
+  display: block;
+  margin-top: 8rpx;
+}
+
+.header-bg {
+  position: absolute;
+  bottom: -60rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400rpx;
+  height: 400rpx;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* 操作按钮 */
+.action-buttons {
+  display: flex;
+  gap: 24rpx;
+  padding: 32rpx;
+}
+
+.action-btn {
+  flex: 1;
+  background-color: #fff;
+  color: #333;
+  border-radius: 18rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  height: 88rpx;
+  line-height: 88rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 交易记录 */
+.records-section {
+  padding: 0 32rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.section-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.filter-tabs {
+  display: flex;
+  background-color: #eee;
+  border-radius: 12rpx;
+  padding: 6rpx;
+}
+
+.tab-item {
+  font-size: 26rpx;
+  color: #666;
+  padding: 10rpx 20rpx;
+  border-radius: 10rpx;
+  transition: all 0.3s ease;
+}
+
+.tab-item.active {
+  background-color: #fff;
+  color: #333;
+  font-weight: bold;
+  box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 记录列表 */
+.record-list {
+  background-color: #fff;
+  border-radius: 18rpx;
+  padding: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.record-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+.record-item:last-child {
+  border-bottom: none;
+}
+
+.record-left {
+  display: flex;
+  align-items: center;
+}
+
+.record-icon {
+  font-size: 36rpx;
+  width: 72rpx;
+  height: 72rpx;
+  background-color: #f7f8fa;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+}
+
+.record-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.record-category {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.record-time {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 4rpx;
+}
+
+.record-amount {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.record-amount.expense {
+  color: #fa5151;
+}
+
+.record-amount.income {
+  color: #07c160;
+}
+
+/* 删除按钮样式 */
+.record-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.delete-btn {
+  margin-top: 8rpx;
+  padding: 8rpx;
+  border-radius: 8rpx;
+  background-color: #f8f9fa;
+  transition: background-color 0.2s ease;
+}
+
+.delete-btn:active {
+  background-color: #e9ecef;
+}
+
+.delete-icon {
+  font-size: 24rpx;
+  color: #dc3545;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 0;
+  color: #999;
+}
+.empty-icon {
+  width: 120rpx;
+  height: 120rpx;
+  opacity: 0.5;
+  margin-bottom: 24rpx;
+}
+.empty-text {
+  font-size: 28rpx;
+} 

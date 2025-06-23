@@ -1,0 +1,68 @@
+<view class="container">
+  <!-- 账户信息头 -->
+  <view class="account-header" style="background-color: {{accountInfo.color}};">
+    <view class="header-content">
+      <view class="account-icon">
+        <text>{{accountInfo.icon}}</text>
+      </view>
+      <text class="account-name">{{accountInfo.name}}</text>
+      <view class="balance-wrapper">
+        <text class="balance-label">当前余额</text>
+        <text class="balance-value">¥{{accountInfo.balance}}</text>
+      </view>
+    </view>
+    <view class="header-bg"></view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-buttons">
+    <button class="action-btn" bindtap="onAddRecord">
+      <text>记一笔</text>
+    </button>
+    <button class="action-btn" bindtap="onEditAccount">
+      <text>编辑</text>
+    </button>
+  </view>
+
+
+  <!-- 交易记录 -->
+  <view class="records-section">
+    <view class="section-header">
+      <text class="section-title">交易记录</text>
+      <view class="filter-tabs">
+        <view class="tab-item {{filterType === 'all' ? 'active' : ''}}" data-type="all" bindtap="onFilterChange">全部</view>
+        <view class="tab-item {{filterType === 'expense' ? 'active' : ''}}" data-type="expense" bindtap="onFilterChange">支出</view>
+        <view class="tab-item {{filterType === 'income' ? 'active' : ''}}" data-type="income" bindtap="onFilterChange">收入</view>
+      </view>
+    </view>
+
+    <block wx:if="{{records.length > 0}}">
+      <view class="record-list">
+        <block wx:for="{{records}}" wx:key="id">
+          <view class="record-item" wx:if="{{filterType === 'all' || item.type === filterType}}">
+            <view class="record-left">
+              <text class="record-icon">{{item.category.icon}}</text>
+              <view class="record-info">
+                <text class="record-category">{{item.category.name}}</text>
+                <text class="record-time">{{item.date}}</text>
+              </view>
+            </view>
+            <view class="record-right">
+              <text class="record-amount {{item.type}}">{{item.type === 'expense' ? '-' : '+'}}¥{{item.amount}}</text>
+              <view class="delete-btn" catchtap="onDeleteRecord" data-record="{{item}}">
+                <text class="delete-icon">🗑️</text>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="empty-state">
+        <image class="empty-icon" src="/images/statistics.png" />
+        <text class="empty-text">该账户暂无交易记录</text>
+      </view>
+    </block>
+
+  </view>
+</view>

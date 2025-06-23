@@ -1,0 +1,38 @@
+<!--statistics-detail.wxml-->
+<view class="main-container">
+  <!-- 顶部卡片 -->
+  <view class="top-card">
+    <view class="top-card-header">
+      <view class="date-text">{{year}}年{{month}}月统计</view>
+    </view>
+    <view class="divider"></view>
+    <view class="balance-row">
+      <text class="balance-label">支出</text>
+      <text class="balance-value out">-{{expense}}</text>
+      <text class="balance-label">收入</text>
+      <text class="balance-value in">+{{income}}</text>
+    </view>
+  </view>
+  <view class="record-header">
+    <text>按类别统计</text>
+    <picker mode="date" fields="month" value="{{year}}-{{month}}" bindchange="onMonthChange">
+      <view class="add-record">切换月份</view>
+    </picker>
+  </view>
+  <view class="record-list">
+    <block wx:if="{{categoryStats.length === 0}}">
+      <view class="no-record">本月暂无记录</view>
+    </block>
+    <block wx:else>
+      <view class="record-item" wx:for="{{categoryStats}}" wx:key="category">
+        <view class="record-left">
+          <text class="record-icon">{{item.icon}}</text>
+          <view class="record-info">
+            <text class="record-category">{{item.category}}</text>
+            <text class="record-remark">支出：-{{item.expense}} 收入：+{{item.income}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view> 

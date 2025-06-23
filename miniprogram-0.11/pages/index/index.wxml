@@ -1,0 +1,158 @@
+<!--index.wxml-->
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="container">
+    <view class="userinfo">
+      <block wx:if="{{canIUseNicknameComp && !hasUserInfo}}">
+        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+          <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+        </button>
+        <view class="nickname-wrapper">
+          <text class="nickname-label">昵称</text>
+          <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />
+        </view>
+      </block>
+      <block wx:elif="{{!hasUserInfo}}">
+        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+        <view wx:else> 请使用2.10.4及以上版本基础库 </view>
+      </block>
+      <block wx:else>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block>
+    </view>
+    <view class="usermotto">
+      <text class="user-motto">{{motto}}</text>
+    </view>
+  </view>
+</scroll-view>
+
+<!-- 主界面 -->
+<view class="main-container">
+  <!-- 顶部卡片 -->
+  <view class="top-card">
+    <view class="top-card-header">
+      <view class="date-text">{{year}}年{{month}}月</view>
+    </view>
+    <view class="divider"></view>
+    <view class="balance-row">
+      <text class="balance-label">本月结余</text>
+      <text class="balance-value">{{balance}}</text>
+    </view>
+    <view class="summary-row">
+      <view class="summary-item">
+        <text class="summary-label">本月支出</text>
+        <text class="summary-value out">-{{expense}}</text>
+      </view>
+      <view class="summary-item">
+        <text class="summary-label">本月收入</text>
+        <text class="summary-value in">{{income}}</text>
+      </view>
+      <view class="summary-item">
+        <text class="summary-label">剩余预算</text>
+        <text class="summary-value">{{budget}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能按钮区 -->
+  <view class="feature-row">
+    <view class="feature-btn" bindtap="onAIAnalysis">
+      <image class="feature-icon" src="/images/ai.png" />
+      <text>ai账单分析</text>
+    </view>
+    <view class="feature-btn" bindtap="onAccount">
+      <image class="feature-icon" src="/images/account.png" />
+      <text>资产账户</text>
+    </view>
+    <view class="feature-btn" bindtap="onBudget">
+      <image class="feature-icon" src="/images/budget.png" />
+      <text>预算</text>
+    </view>
+    <view class="feature-btn" bindtap="onTodayDetail">
+      <image class="feature-icon" src="/images/today.png" />
+      <text>今日明细</text>
+    </view>
+  </view>
+
+  <!-- 收支记录区 -->
+  <view class="record-header">
+    <text>收支记录</text>
+    <view class="header-actions">
+      <text class="add-record" bindtap="onAddRecord">+ 记一笔</text>
+      <view class="debug-btn" bindtap="debugData" wx:if="{{displayRecords.length === 0}}">
+        <text class="debug-icon">🔍</text>
+        <text class="debug-text">调试</text>
+      </view>
+    </view>
+  </view>
+  <view class="record-list">
+    <block wx:if="{{displayRecords.length === 0}}">
+      <view class="no-record">本月暂无记录</view>
+      <button class="start-btn" bindtap="onAddRecord">开始记账</button>
+    </block>
+    <block wx:else>
+      <view class="record-item" wx:for="{{displayRecords}}" wx:key="id">
+        <view class="record-left">
+          <text class="record-icon">{{item.category.icon}}</text>
+          <view class="record-info">
+            <text class="record-category">{{item.category.name}}</text>
+            <text class="record-remark" wx:if="{{item.remark}}">{{item.remark}}</text>
+            <text class="record-time">{{item.date}} {{item.time}}</text>
+          </view>
+        </view>
+        <view class="record-right">
+          <text class="record-amount {{item.type === 'expense' ? 'out' : 'in'}}">
+            {{item.type === 'expense' ? '-' : '+'}}{{item.amount}}
+          </text>
+          <view class="delete-btn" catchtap="onDeleteRecord" data-record="{{item}}">
+            <text class="delete-icon">🗑️</text>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 加载更多提示 -->
+      <view class="load-more" wx:if="{{hasMore || isLoading}}">
+        <view wx:if="{{isLoading}}" class="loading">
+          <view class="loading-icon"></view>
+          <text class="loading-text">加载中...</text>
+        </view>
+        <view wx:elif="{{hasMore}}" class="load-more-btn" bindtap="loadMoreRecords">
+          <text>点击加载更多</text>
+        </view>
+      </view>
+      
+      <!-- 没有更多数据提示 -->
+      <view class="no-more" wx:if="{{!hasMore && displayRecords.length > 0}}">
+        <text>已显示全部记录 ({{displayRecords.length}}条)</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- 底部导航栏 -->
+  <view class="tabbar">
+    <view class="tabbar-item" bindtap="onCalendar">
+      <image src="/images/calendar.png" class="tabbar-icon" />
+      <text>日历</text>
+    </view>
+    <view class="tabbar-item" bindtap="onStatistics">
+      <image src="/images/statistics.png" class="tabbar-icon" />
+      <text>统计</text>
+    </view>
+    <view class="tabbar-item add-btn" bindtap="onAddRecord">
+      <view class="add-circle">+</view>
+    </view>
+    <view class="tabbar-item" bindtap="onSaving">
+      <image src="/images/saving.png" class="tabbar-icon" />
+      <text>存钱</text>
+    </view>
+    <view class="tabbar-item" bindtap="onMine">
+      <image src="/images/mine.png" class="tabbar-icon" />
+      <text>我的</text>
+    </view>
+  </view>
+
+  <!-- 回到顶部按钮 -->
+  <view class="back-to-top" bindtap="scrollToTop" wx:if="{{displayRecords.length > 10}}">
+    <text class="back-to-top-icon">↑</text>
+  </view>
+</view>

@@ -1,0 +1,58 @@
+<!--ai-analysis-detail.wxml-->
+<view class="main-container">
+  <!-- 顶部卡片 -->
+  <view class="top-card">
+    <view class="top-card-header">
+      <view class="date-text">AI账单分析详情</view>
+    </view>
+    <view class="divider"></view>
+    <view class="summary-row">
+      <view class="summary-item">
+        <text class="summary-label">分析周期</text>
+        <text class="summary-value">{{period}}</text>
+      </view>
+      <view class="summary-item">
+        <text class="summary-label">总支出</text>
+        <text class="summary-value out">-{{totalExpense}}</text>
+      </view>
+      <view class="summary-item">
+        <text class="summary-label">总收入</text>
+        <text class="summary-value in">{{totalIncome}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 账单自动分析建议/规划板块 -->
+  <view class="record-header wide-block">
+    <text>AI账单分析建议</text>
+  </view>
+  <view class="ai-suggestion wide-block">
+    <block wx:if="{{suggestions.length > 0}}">
+      <view class="suggestion-item" wx:for="{{suggestions}}" wx:key="index">
+        <text class="suggestion-title">{{item.title}}</text>
+        <text class="suggestion-content">{{item.content}}</text>
+      </view>
+    </block>
+    <block wx:else>
+      <text>暂无分析建议</text>
+    </block>
+  </view>
+
+  <!-- AI聊天式问答账单分析板块 -->
+  <view class="record-header wide-block">
+    <text>AI账单问答</text>
+  </view>
+  <view class="ai-chat wide-block">
+    <view class="chat-list">
+      <view class="chat-item" wx:for="{{chatList}}" wx:key="index" wx:for-item="msg">
+        <view class="chat-bubble {{msg.role}}">
+          <text>{{msg.content}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="chat-input-row">
+      <input class="chat-input" placeholder="向AI提问账单相关问题..." value="{{chatInput}}" bindinput="onChatInput" />
+      <button class="chat-send-btn" bindtap="onSendChat">发送</button>
+    </view>
+  </view>
+</view> 

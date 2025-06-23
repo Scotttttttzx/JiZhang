@@ -1,0 +1,88 @@
+<!--account.wxml-->
+<view class="container">
+  <!-- 总资产卡片 -->
+  <view class="total-assets-card">
+    <view class="card-header">
+      <text class="card-title">总资产</text>
+    </view>
+    <view class="assets-value">
+      <text class="currency">¥</text>
+      <text class="amount">{{totalAssets}}</text>
+    </view>
+    <view class="assets-bg"></view>
+  </view>
+
+  <!-- 账户列表 -->
+  <view class="account-list-section">
+    <view class="section-header">
+      <text class="section-title">我的账户</text>
+    </view>
+
+    <block wx:if="{{accounts.length > 0}}">
+      <view class="account-list">
+        <view class="account-card" wx:for="{{accounts}}" wx:key="id" bindtap="onAccountTap" data-id="{{item.id}}">
+          <view class="card-left">
+            <view class="account-icon" style="background-color: {{item.color}};">
+              <text>{{item.icon}}</text>
+            </view>
+            <view class="account-info">
+              <text class="account-name">{{item.name}}</text>
+              <text class="account-type">{{item.type_name}}</text>
+            </view>
+          </view>
+          <view class="card-right">
+            <text class="account-balance">¥{{item.balance}}</text>
+            <view class="arrow">›</view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="empty-state">
+        <image class="empty-icon" src="/images/account.png" />
+        <text class="empty-text">暂无账户，快来添加吧</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- 新建账户按钮 -->
+  <view class="add-btn-wrapper">
+    <button class="add-btn" bindtap="onAddAccount">
+      <text class="plus-icon">+</text>
+      <text>新建账户</text>
+    </button>
+  </view>
+
+  <!-- 新建账户表单 (弹窗) -->
+  <view class="add-form-popup" wx:if="{{showAddForm}}">
+    <view class="popup-mask" bindtap="onCloseForm"></view>
+    <view class="popup-content">
+      <view class="popup-header">
+        <text class="popup-title">新建账户</text>
+        <view class="close-btn" bindtap="onCloseForm">×</view>
+      </view>
+      <view class="form-body">
+        <view class="form-item">
+          <text class="form-label">账户名称</text>
+          <input class="form-input" placeholder="例如：工资卡" value="{{newAccount.name}}" data-field="name" bindinput="onInputChange" />
+        </view>
+        <view class="form-item">
+          <text class="form-label">账户类型</text>
+          <picker class="form-picker" bindchange="onTypeChange" value="{{selectedTypeIndex}}" range="{{accountTypes}}" range-key="name">
+            <view class="picker-display">
+              <text>{{selectedTypeName}}</text>
+              <text class="picker-arrow">›</text>
+            </view>
+          </picker>
+        </view>
+        <view class="form-item">
+          <text class="form-label">初始余额</text>
+          <input class="form-input" type="digit" placeholder="请输入金额" value="{{newAccount.balance}}" data-field="balance" bindinput="onInputChange" />
+        </view>
+      </view>
+      <view class="form-footer">
+        <button class="submit-btn" bindtap="onFormSubmit">完成</button>
+      </view>
+    </view>
+  </view>
+</view> 

@@ -1,0 +1,103 @@
+<!--today.wxml-->
+<view class="main-container">
+  <!-- 顶部卡片 -->
+  <view class="top-card">
+    <view class="top-card-header">
+      <view class="date-text">{{year}}年{{month}}月{{day}}日</view>
+    </view>
+    <view class="divider"></view>
+    <view class="summary-row">
+      <view class="summary-item">
+        <text class="summary-label">今日支出</text>
+        <text class="summary-value out">-{{totalExpense}}</text>
+      </view>
+      <view class="summary-item">
+        <text class="summary-label">今日收入</text>
+        <text class="summary-value in">{{totalIncome}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日明细列表 -->
+  <view class="record-header">
+    <text>今日明细</text>
+    <text class="record-count" wx:if="{{todayRecords.length > 0}}">({{todayRecords.length}}条)</text>
+    <view class="header-actions" wx:if="{{todayRecords.length === 0}}">
+      <view class="test-btn" bindtap="createTestData">
+        <text class="test-icon">🧪</text>
+        <text class="test-text">测试</text>
+      </view>
+    </view>
+  </view>
+  <view class="record-list">
+    <block wx:if="{{todayRecords.length === 0}}">
+      <view class="no-record">
+        <text class="no-record-icon">📝</text>
+        <text class="no-record-text">今日暂无记录</text>
+        <text class="no-record-desc">点击首页"+"按钮添加今日收支记录</text>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="record-item" wx:for="{{todayRecords}}" wx:key="id" bindtap="onRecordDetail" data-record="{{item}}">
+        <view class="record-left">
+          <text class="record-icon">{{item.category.icon}}</text>
+          <view class="record-info">
+            <text class="record-category">{{item.category.name}}</text>
+            <text class="record-remark" wx:if="{{item.remark}}">{{item.remark}}</text>
+            <text class="record-time">{{item.time}}</text>
+          </view>
+        </view>
+        <view class="record-right">
+          <text class="record-amount {{item.type === 'expense' ? 'out' : 'in'}}">
+            {{item.type === 'expense' ? '-' : '+'}}{{item.amount}}
+          </text>
+          <view class="delete-btn" catchtap="onDeleteRecord" data-record="{{item}}">
+            <text class="delete-icon">🗑️</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<view class="accounts-section wide-block">
+  <view class="accounts-list">
+    <block wx:if="{{accounts.length === 0}}">
+      <view class="no-accounts">
+        <text class="no-accounts-icon">🏦</text>
+        <text class="no-accounts-text">暂无账户</text>
+        <text class="no-accounts-desc">点击上方\"添加账户\"开始管理您的资产</text>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="account-item" wx:for="{{accounts}}" wx:key="id" bindtap="onAccountDetail" data-account="{{item}}">
+        <view class="account-left">
+          <view class="account-icon" style="background-color: {{item.type ? item.type.color : '#ccc'}}">
+            <text>{{item.type ? item.type.icon : ''}}</text>
+          </view>
+          <view class="account-info">
+            <text class="account-name">{{item.name}}</text>
+            <text class="account-type">{{item.type ? item.type.name : ''}}</text>
+            <text class="account-remark" wx:if="{{item.remark}}">{{item.remark}}</text>
+          </view>
+        </view>
+        <view class="account-right">
+          <text class="account-balance">¥{{item.balance ? item.balance.toFixed(2) : '0.00'}}</text>
+          <view class="account-actions">
+            <view class="action-btn edit-btn" catchtap="onEditAccount" data-account="{{item}}"><text>编辑</text></view>
+            <view class="action-btn delete-btn" catchtap="onDeleteAccount" data-account="{{item}}"><text>删除</text></view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<view class="suggestion-item" wx:for="{{suggestions}}" wx:key="index">
+  <text class="suggestion-title">{{item.title ? item.title : ''}}</text>
+  <text class="suggestion-content">{{item.content ? item.content : ''}}</text>
+</view>
+
+<view class="chat-bubble {{msg.role}}">
+  <text>{{msg.content ? msg.content : ''}}</text>
+</view> 

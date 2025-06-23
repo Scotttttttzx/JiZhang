@@ -1,0 +1,62 @@
+<!--pages/account-edit/account-edit.wxml-->
+<view class="container">
+  <!-- 编辑表单卡片 -->
+  <view class="edit-card">
+    <view class="card-header">
+      <text class="card-title">编辑账户</text>
+    </view>
+    
+    <!-- 账户类型选择 -->
+    <view class="form-item">
+      <text class="form-label">账户类型</text>
+      <view class="type-selector">
+        <view class="type-item {{selectedType === item.id ? 'active' : ''}}" 
+              wx:for="{{accountTypes}}" 
+              wx:key="id"
+              data-type="{{item.id}}"
+              bindtap="onTypeSelect">
+          <text class="type-icon">{{item.icon}}</text>
+          <text class="type-name">{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 账户名称 -->
+    <view class="form-item">
+      <text class="form-label">账户名称</text>
+      <input class="form-input" 
+             type="text" 
+             placeholder="请输入账户名称" 
+             value="{{accountName}}" 
+             bindinput="onNameInput"/>
+    </view>
+
+    <!-- 账户余额 -->
+    <view class="form-item">
+      <text class="form-label">账户余额</text>
+      <input class="form-input" 
+             type="digit" 
+             placeholder="0.00" 
+             value="{{accountBalance}}" 
+             bindinput="onBalanceInput"/>
+    </view>
+
+    <!-- 备注信息 -->
+    <view class="form-item">
+      <text class="form-label">备注</text>
+      <textarea class="form-textarea" 
+                placeholder="可选，添加账户备注信息" 
+                value="{{accountNote}}" 
+                bindinput="onNoteInput"/>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-buttons">
+    <button class="save-btn" bindtap="onSaveAccount">保存修改</button>
+    <button class="delete-btn" bindtap="onDeleteAccount">删除账户</button>
+  </view>
+
+  <!-- 底部占位 -->
+  <view class="footer-placeholder"></view>
+</view> 

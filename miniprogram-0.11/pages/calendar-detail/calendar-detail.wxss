@@ -1,0 +1,175 @@
+@import "../index/index.wxss";
+
+/* 日历详情页专属样式 */
+
+/* 同步信息样式 */
+.sync-info {
+  display: flex;
+  align-items: center;
+  font-size: 22rpx;
+  color: #888;
+  margin-top: 8rpx;
+}
+
+.sync-text {
+  margin-right: 8rpx;
+}
+
+.sync-icon {
+  font-size: 24rpx;
+  transition: transform 0.3s ease;
+}
+
+.sync-icon.refreshing {
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 统计行样式 */
+.summary-row {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  margin: 16rpx 0;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summary-label {
+  font-size: 22rpx;
+  color: #888;
+  margin-bottom: 4rpx;
+}
+
+.summary-value {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.summary-value.in {
+  color: #07c160;
+}
+
+.summary-value.out {
+  color: #fa5151;
+}
+
+/* 详细统计行 */
+.stats-row {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 16rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-label {
+  font-size: 20rpx;
+  color: #999;
+  margin-bottom: 4rpx;
+}
+
+.stat-value {
+  font-size: 24rpx;
+  color: #666;
+  font-weight: 500;
+}
+
+/* 记录数量显示 */
+.record-count {
+  font-size: 24rpx;
+  color: #888;
+  margin-left: 8rpx;
+}
+
+/* 头部操作区域 */
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.export-btn {
+  display: flex;
+  align-items: center;
+  background: #f8f9fa;
+  padding: 8rpx 16rpx;
+  border-radius: 12rpx;
+  margin-left: 16rpx;
+  transition: background-color 0.2s ease;
+}
+
+.export-btn:active {
+  background-color: #e9ecef;
+}
+
+.export-icon {
+  font-size: 24rpx;
+  margin-right: 6rpx;
+}
+
+.export-text {
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 测试按钮样式 */
+.test-btn {
+  display: flex;
+  align-items: center;
+  background: #ffc107;
+  padding: 8rpx 16rpx;
+  border-radius: 12rpx;
+  margin-left: 12rpx;
+  transition: background-color 0.2s ease;
+}
+
+.test-btn:active {
+  background-color: #e0a800;
+}
+
+.test-icon {
+  font-size: 24rpx;
+  margin-right: 6rpx;
+}
+
+.test-text {
+  font-size: 24rpx;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* 优化记录项样式 */
+.record-item {
+  position: relative;
+}
+
+.record-item:last-child {
+  margin-bottom: 0;
+}
+
+/* 响应式调整 */
+@media (max-width: 375px) {
+  .summary-row {
+    width: 95%;
+  }
+  
+  .stats-row {
+    width: 95%;
+  }
+} 

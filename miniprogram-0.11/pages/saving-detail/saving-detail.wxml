@@ -1,0 +1,125 @@
+<!--pages/saving-detail/saving-detail.wxml-->
+<view class="container">
+  <!-- 目标信息卡片 -->
+  <view class="goal-card" wx:if="{{goal}}">
+    <view class="goal-header">
+      <view class="goal-icon" style="background-color: {{goal.type.color}}">
+        <text>{{goal.type.icon}}</text>
+      </view>
+      <view class="goal-info">
+        <text class="goal-name">{{goal.name}}</text>
+        <text class="goal-remark" wx:if="{{goal.remark}}">{{goal.remark}}</text>
+      </view>
+      <view class="goal-actions">
+        <view class="action-btn edit-btn" bindtap="onEditGoal">
+          <text>编辑</text>
+        </view>
+        <view class="action-btn delete-btn" bindtap="onDeleteGoal">
+          <text>删除</text>
+        </view>
+      </view>
+    </view>
+    
+    <view class="goal-progress-section">
+      <view class="goal-details">
+        <view class="detail-item">
+          <text class="detail-label">目标金额</text>
+          <text class="detail-value">¥{{goal.targetAmount}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">已存金额</text>
+          <text class="detail-value">¥{{goal.currentAmount}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">剩余金额</text>
+          <text class="detail-value">¥{{goal.remainingAmount}}</text>
+        </view>
+        <view class="detail-item" wx:if="{{goal.deadline}}">
+          <text class="detail-label">截止日期</text>
+          <text class="detail-value">{{goal.deadline}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 存钱记录区域 -->
+  <view class="records-section">
+    <view class="section-header">
+      <text class="section-title">存钱记录</text>
+      <view class="add-record-btn" bindtap="onShowAddRecordModal">
+        <text class="add-icon">+</text>
+        <text class="add-text">存钱</text>
+      </view>
+    </view>
+    
+    <view class="records-list">
+      <block wx:if="{{records.length === 0}}">
+        <view class="no-records">
+          <text class="no-records-icon">💰</text>
+          <text class="no-records-text">暂无存钱记录</text>
+          <text class="no-records-desc">点击上方"存钱"开始您的存钱计划</text>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="record-item" 
+              wx:for="{{records}}" 
+              wx:key="id">
+          <view class="record-left">
+            <text class="record-icon">💰</text>
+            <view class="record-info">
+              <text class="record-amount">+¥{{item.amount}}</text>
+              <text class="record-remark" wx:if="{{item.remark}}">{{item.remark}}</text>
+              <text class="record-time">{{item.createTime}}</text>
+            </view>
+          </view>
+          <view class="record-right">
+            <view class="delete-record-btn" 
+                  catchtap="onDeleteRecord" 
+                  data-record="{{item}}">
+              <text>删除</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 添加存钱记录弹窗 -->
+  <view class="modal-overlay" wx:if="{{showAddRecordModal}}" bindtap="onHideAddRecordModal">
+    <view class="modal-content" catchtap="stopPropagation">
+      <view class="modal-header">
+        <text class="modal-title">添加存钱记录</text>
+        <view class="modal-close" bindtap="onHideAddRecordModal">
+          <text>×</text>
+        </view>
+      </view>
+      
+      <view class="modal-body">
+        <view class="form-item">
+          <text class="form-label">存钱金额</text>
+          <view class="amount-input-wrapper">
+            <text class="currency">¥</text>
+            <input class="amount-input" 
+                   type="digit" 
+                   placeholder="0.00" 
+                   value="{{newRecord.amount}}"
+                   bindinput="onRecordAmountInput" />
+          </view>
+        </view>
+        
+        <view class="form-item">
+          <text class="form-label">备注</text>
+          <input class="form-input" 
+                 placeholder="添加备注（可选）" 
+                 value="{{newRecord.remark}}"
+                 bindinput="onRecordRemarkInput" />
+        </view>
+      </view>
+      
+      <view class="modal-footer">
+        <button class="cancel-btn" bindtap="onHideAddRecordModal">取消</button>
+        <button class="confirm-btn" bindtap="onAddRecord">确定</button>
+      </view>
+    </view>
+  </view>
+</view> 

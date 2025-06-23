@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/add-record/add-record",
+    "pages/account/account",
+    "pages/account-detail/account-detail",
+    "pages/account-edit/account-edit",
+    "pages/budget/budget",
+    "pages/today/today",
+    "pages/today-detail/today-detail",
+    "pages/budget-detail/budget-detail",
+    "pages/ai-analysis/ai-analysis",
+    "pages/ai-analysis-detail/ai-analysis-detail",
+    "pages/calendar/calendar",
+    "pages/calendar-detail/calendar-detail",
+    "pages/statistics/statistics",
+    "pages/statistics-detail/statistics-detail",
+    "pages/saving/saving",
+    "pages/saving-detail/saving-detail",
+    "pages/saving-edit/saving-edit",
+    "pages/mine/mine"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "记账小程序",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

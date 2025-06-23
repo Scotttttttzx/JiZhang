@@ -1,0 +1,112 @@
+@import "../index/index.wxss";
+
+/* 可根据需要添加预算详情页面的专属样式 */
+page {
+  background-color: #f7f8fa;
+}
+
+.container {
+  padding: 24rpx;
+}
+
+.budget-card {
+  background-color: #fff;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 32rpx;
+}
+
+.card-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-subtitle {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 总预算输入 */
+.total-budget-input-wrapper {
+  display: flex;
+  align-items: baseline;
+  padding-bottom: 16rpx;
+  border-bottom: 2rpx solid #465EFB;
+}
+.currency-symbol {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333;
+  margin-right: 16rpx;
+}
+.total-budget-input {
+  flex: 1;
+  font-size: 64rpx;
+  font-weight: bold;
+}
+
+/* 分类预算列表 */
+.category-list {
+  padding-top: 8rpx;
+}
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28rpx 0;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+.category-item:last-child {
+  border-bottom: none;
+}
+.item-info {
+  display: flex;
+  align-items: center;
+}
+.item-icon {
+  font-size: 40rpx;
+  margin-right: 24rpx;
+}
+.item-name {
+  font-size: 30rpx;
+  color: #333;
+}
+.item-input {
+  font-size: 30rpx;
+  color: #333;
+  text-align: right;
+  width: 250rpx;
+  font-weight: 500;
+}
+
+/* 底部 */
+.footer-placeholder {
+  height: 180rpx;
+}
+.save-btn-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24rpx 40rpx;
+  padding-bottom: calc(env(safe-area-inset-bottom, 24rpx));
+  background-color: #f7f8fa;
+}
+.save-btn {
+  background-color: #465EFB;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: bold;
+  border-radius: 50rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+} 

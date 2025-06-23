@@ -1,0 +1,33 @@
+<!--statistics.wxml-->
+<view class="main-container">
+  <!-- 顶部卡片 -->
+  <view class="top-card">
+    <view class="top-card-header">
+      <view class="date-text">{{year}}年{{month}}月统计</view>
+    </view>
+    <view class="divider"></view>
+    <view class="balance-row">
+      <text class="balance-label">本月支出</text>
+      <text class="balance-value out">-{{expense}}</text>
+      <text class="balance-label">本月收入</text>
+      <text class="balance-value in">+{{income}}</text>
+    </view>
+  </view>
+  <view class="record-header">
+    <text>收支统计</text>
+  </view>
+  <view class="record-list">
+    <view class="record-item" bindtap="onGoDetail">
+      <view class="record-left">
+        <image class="feature-icon" src="/images/statistics.png" />
+        <view class="record-info">
+          <text class="record-category">分类/月份统计</text>
+          <text class="record-remark">查看不同类别和月份的收支统计</text>
+        </view>
+      </view>
+      <view class="record-right">
+        <text class="record-amount">进入</text>
+      </view>
+    </view>
+  </view>
+</view> 

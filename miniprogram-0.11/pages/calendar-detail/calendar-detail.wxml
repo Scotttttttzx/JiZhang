@@ -1,0 +1,79 @@
+<!--calendar-detail.wxml-->
+<view class="main-container">
+  <!-- 顶部卡片 -->
+  <view class="top-card">
+    <view class="top-card-header">
+      <view class="date-text">{{date}}</view>
+      <view class="sync-info" bindtap="onManualSync">
+        <text class="sync-text">同步于 {{lastSyncTime}}</text>
+        <text class="sync-icon {{isRefreshing ? 'refreshing' : ''}}">🔄</text>
+      </view>
+    </view>
+    <view class="divider"></view>
+    <view class="balance-row">
+      <text class="balance-label">支出</text>
+      <text class="balance-value out">-{{expense}}</text>
+      <text class="balance-label">收入</text>
+      <text class="balance-value in">+{{income}}</text>
+    </view>
+    <view class="summary-row">
+      <view class="summary-item">
+        <text class="summary-label">结余</text>
+        <text class="summary-value {{balance >= 0 ? 'in' : 'out'}}">{{balance >= 0 ? '+' : ''}}{{balance}}</text>
+      </view>
+      <view class="summary-item">
+        <text class="summary-label">记录数</text>
+        <text class="summary-value">{{totalRecords}}</text>
+      </view>
+    </view>
+    <view class="stats-row">
+      <view class="stat-item">
+        <text class="stat-label">支出笔数</text>
+        <text class="stat-value">{{expenseCount}}</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-label">收入笔数</text>
+        <text class="stat-value">{{incomeCount}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="record-header">
+    <text>收支明细</text>
+    <text class="record-count">({{totalRecords}}条)</text>
+    <view class="header-actions">
+      <view class="export-btn" bindtap="onExportData">
+        <text class="export-icon">📊</text>
+        <text class="export-text">导出</text>
+      </view>
+      <view class="test-btn" bindtap="createTestData" wx:if="{{totalRecords === 0}}">
+        <text class="test-icon">🧪</text>
+        <text class="test-text">测试</text>
+      </view>
+    </view>
+  </view>
+  <view class="record-list">
+    <block wx:if="{{records.length === 0}}">
+      <view class="no-record">当天暂无记录</view>
+    </block>
+    <block wx:else>
+      <view class="record-item" wx:for="{{records}}" wx:key="id">
+        <view class="record-left">
+          <text class="record-icon">{{item.category.icon}}</text>
+          <view class="record-info">
+            <text class="record-category">{{item.category.name}}</text>
+            <text class="record-remark" wx:if="{{item.remark}}">{{item.remark}}</text>
+            <text class="record-time">{{item.time}}</text>
+          </view>
+        </view>
+        <view class="record-right">
+          <text class="record-amount {{item.type === 'expense' ? 'out' : 'in'}}">
+            {{item.type === 'expense' ? '-' : '+'}}{{item.amount}}
+          </text>
+          <view class="delete-btn" catchtap="onDeleteRecord" data-record="{{item}}">
+            <text class="delete-icon">🗑️</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view> 

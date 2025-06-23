@@ -1,0 +1,63 @@
+<!--pages/saving-edit/saving-edit.wxml-->
+<view class="container">
+  <view class="edit-form">
+    <view class="form-item">
+      <text class="form-label">目标名称</text>
+      <input class="form-input" 
+             placeholder="请输入目标名称" 
+             value="{{editedGoal.name}}"
+             bindinput="onGoalNameInput" />
+    </view>
+    
+    <view class="form-item">
+      <text class="form-label">目标金额</text>
+      <view class="amount-input-wrapper">
+        <text class="currency">¥</text>
+        <input class="amount-input" 
+               type="digit" 
+               placeholder="0.00" 
+               value="{{editedGoal.targetAmount}}"
+               bindinput="onGoalAmountInput" />
+      </view>
+    </view>
+    
+    <view class="form-item">
+      <text class="form-label">截止日期</text>
+      <picker mode="date" 
+              value="{{editedGoal.deadline}}" 
+              bindchange="onGoalDeadlineChange">
+        <view class="picker-input">
+          <text wx:if="{{editedGoal.deadline}}">{{editedGoal.deadline}}</text>
+          <text wx:else class="placeholder">选择截止日期（可选）</text>
+        </view>
+      </picker>
+    </view>
+    
+    <view class="form-item">
+      <text class="form-label">目标类型</text>
+      <view class="type-grid">
+        <view class="type-item {{editedGoal.type.id === item.id ? 'selected' : ''}}"
+              wx:for="{{goalTypes}}" 
+              wx:key="id"
+              bindtap="onSelectGoalType"
+              data-type="{{item}}">
+          <text class="type-icon">{{item.icon}}</text>
+          <text class="type-name">{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <view class="form-item">
+      <text class="form-label">备注</text>
+      <input class="form-input" 
+             placeholder="添加备注（可选）" 
+             value="{{editedGoal.remark}}"
+             bindinput="onGoalRemarkInput" />
+    </view>
+  </view>
+  
+  <view class="button-group">
+    <button class="cancel-btn" bindtap="onCancelEdit">取消</button>
+    <button class="save-btn" bindtap="onSaveGoal">保存</button>
+  </view>
+</view> 

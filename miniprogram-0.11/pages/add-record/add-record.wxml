@@ -1,0 +1,86 @@
+<!--add-record.wxml-->
+<view class="container">
+  <!-- 顶部类型选择 -->
+  <view class="type-selector">
+    <view class="type-btn {{recordType === 'expense' ? 'active' : ''}}" 
+          bindtap="onTypeChange" 
+          data-type="expense">
+      <text class="type-icon">💸</text>
+      <text class="type-text">支出</text>
+    </view>
+    <view class="type-btn {{recordType === 'income' ? 'active' : ''}}" 
+          bindtap="onTypeChange" 
+          data-type="income">
+      <text class="type-icon">💰</text>
+      <text class="type-text">收入</text>
+    </view>
+  </view>
+
+  <!-- 金额输入 -->
+  <view class="amount-section">
+    <text class="amount-label">金额</text>
+    <view class="amount-input-wrapper">
+      <text class="currency">¥</text>
+      <input class="amount-input" 
+             type="digit" 
+             placeholder="0.00" 
+             value="{{amount}}"
+             bindinput="onAmountInput" />
+    </view>
+  </view>
+
+  <!-- 分类选择 -->
+  <view class="category-section">
+    <text class="section-title">选择分类</text>
+    <view class="category-grid">
+      <view class="category-item {{selectedCategory.id === item.id ? 'selected' : ''}}"
+            wx:for="{{categories[recordType]}}" 
+            wx:key="id"
+            bindtap="onCategorySelect"
+            data-category="{{item}}">
+        <text class="category-icon">{{item.icon}}</text>
+        <text class="category-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 备注输入 -->
+  <view class="remark-section">
+    <text class="section-title">备注</text>
+    <input class="remark-input" 
+           placeholder="添加备注..." 
+           value="{{remark}}"
+           bindinput="onRemarkInput" />
+  </view>
+
+  <!-- 日期时间选择 -->
+  <view class="datetime-section">
+    <view class="datetime-item">
+      <text class="datetime-label">日期</text>
+      <picker mode="date" 
+              value="{{date}}" 
+              bindchange="onDateChange">
+        <view class="datetime-picker">
+          <text>{{date}}</text>
+          <text class="picker-arrow">></text>
+        </view>
+      </picker>
+    </view>
+    <view class="datetime-item">
+      <text class="datetime-label">时间</text>
+      <picker mode="time" 
+              value="{{time}}" 
+              bindchange="onTimeChange">
+        <view class="datetime-picker">
+          <text>{{time}}</text>
+          <text class="picker-arrow">></text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 保存按钮 -->
+  <view class="save-section">
+    <button class="save-btn" bindtap="onSaveRecord">保存记录</button>
+  </view>
+</view> 

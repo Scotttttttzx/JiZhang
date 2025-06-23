@@ -1,0 +1,36 @@
+@import "../index/index.wxss";
+
+.calendar-list {
+  width: 92vw;
+  background: #fff;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.04);
+  padding: 24rpx;
+  margin: 24rpx 0 0 0;
+}
+.calendar-week {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  color: #888;
+  margin-bottom: 12rpx;
+}
+.calendar-days {
+  display: flex;
+  flex-wrap: wrap;
+}
+.calendar-day {
+  width: 13vw;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8rpx;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  color: #333;
+}
+.calendar-day.today {
+  background: #357aff;
+  color: #fff;
+} 

@@ -1,0 +1,82 @@
+<!--budget.wxml-->
+<view class="container">
+  <!-- 顶部月份选择 -->
+  <view class="month-selector">
+    <picker mode="date" fields="month" bindchange="onDateChange" value="{{currentYear}}-{{currentMonth}}">
+      <view class="picker-display">
+        <text class="current-date">{{currentYear}}年{{currentMonth}}月</text>
+        <image class="dropdown-icon" src="/images/calendar.png" />
+      </view>
+    </picker>
+  </view>
+
+  <!-- 预算总览卡片 -->
+  <view class="overview-card">
+    <view class="card-item">
+      <text class="label">本月预算</text>
+      <text class="value">¥{{totalBudget}}</text>
+    </view>
+    <view class="card-item">
+      <text class="label">本月支出</text>
+      <text class="value expense">¥{{totalExpense}}</text>
+    </view>
+    <view class="card-item">
+      <text class="label">本月结余</text>
+      <text class="value">¥{{remainingAmount}}</text>
+    </view>
+    <view class="progress-bar-container">
+      <view class="custom-progress-bar">
+        <view class="progress-track">
+          <view class="progress-fill" style="width: {{remainingPercentage}}%; background: {{remainingPercentage < 20 ? '#ff4757' : remainingPercentage < 50 ? '#ffa502' : '#27c27c'}};"></view>
+        </view>
+      </view>
+    </view>
+    <view class="progress-label">
+      <text>剩余 {{remainingPercentage}}%</text>
+    </view>
+  </view>
+
+  <!-- 分类预算列表 -->
+  <view class="category-budgets-section">
+    <view class="section-header">
+      <text class="section-title">分类预算</text>
+      <button class="setup-btn" bindtap="onSetBudget">设置预算</button>
+    </view>
+
+    <block wx:if="{{categoryBudgets.length > 0}}">
+      <view class="category-list">
+        <view class="category-card" wx:for="{{categoryBudgets}}" wx:key="id">
+          <view class="category-info">
+            <text class="cat-icon">{{item.icon}}</text>
+            <text class="cat-name">{{item.name}}</text>
+          </view>
+          <view class="budget-details">
+            <view class="amount-info">
+              <text class="cat-expense">¥{{item.expense}}</text>
+              <text class="cat-budget">/ ¥{{item.amount}}</text>
+              <text class="cat-percentage">{{item.percentage}}%</text>
+            </view>
+            <view class="cat-progress-bar-container">
+              <view class="custom-progress-bar">
+                <view class="progress-track">
+                  <view class="progress-fill" style="width: {{item.percentage > 100 ? 100 : item.percentage}}%; background: {{item.percentage > 100 ? '#ff4757' : item.percentage > 80 ? '#ffa502' : '#27c27c'}};"></view>
+                </view>
+                <view class="progress-text">{{item.percentage}}</view>
+              </view>
+            </view>
+            <view class="cat-remaining">
+              <text class="remaining-text {{item.percentage > 100 ? 'over-budget' : ''}}">剩余 ¥{{item.remaining || '0.00'}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="empty-state">
+        <image class="empty-icon" src="/images/budget.png" />
+        <text class="empty-text">本月还未设置预算</text>
+        <button class="empty-btn" bindtap="onSetBudget">去设置</button>
+      </view>
+    </block>
+  </view>
+</view> 

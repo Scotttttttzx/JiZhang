@@ -1,0 +1,50 @@
+<!--budget-detail.wxml-->
+<view class="container">
+  <!-- 总预算卡片 -->
+  <view class="budget-card">
+    <view class="card-header">
+      <text class="card-title">月度总预算</text>
+      <text class="card-subtitle">{{currentYear}}年{{currentMonth}}月</text>
+    </view>
+    <view class="total-budget-input-wrapper">
+      <text class="currency-symbol">¥</text>
+      <input class="total-budget-input" 
+             type="digit" 
+             placeholder="0.00" 
+             value="{{totalBudget}}" 
+             bindinput="onTotalBudgetInput"/>
+    </view>
+  </view>
+
+  <!-- 分类预算卡片 -->
+  <view class="budget-card">
+    <view class="card-header">
+      <text class="card-title">分类预算</text>
+      <text class="card-subtitle">（选填）</text>
+    </view>
+    <view class="category-list">
+      <view class="category-item" wx:for="{{categoryBudgets}}" wx:key="id">
+        <view class="item-info">
+          <text class="item-icon">{{item.icon}}</text>
+          <text class="item-name">{{item.name}}</text>
+        </view>
+        <view class="item-input-wrapper">
+          <input class="item-input" 
+                 type="digit" 
+                 placeholder="¥0.00" 
+                 value="{{item.amount}}"
+                 data-id="{{item.id}}"
+                 bindinput="onCategoryBudgetInput"/>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部占位 -->
+  <view class="footer-placeholder"></view>
+
+  <!-- 保存按钮 -->
+  <view class="save-btn-wrapper">
+    <button class="save-btn" bindtap="onSaveBudget">保存预算</button>
+  </view>
+</view> 

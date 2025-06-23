@@ -1,0 +1,29 @@
+<!--calendar.wxml-->
+<view class="main-container">
+  <!-- 顶部卡片 -->
+  <view class="top-card">
+    <view class="top-card-header">
+      <view class="date-text">{{year}}年{{month}}月</view>
+    </view>
+    <view class="divider"></view>
+    <view class="balance-row">
+      <text class="balance-label">今日</text>
+      <text class="balance-value">{{today}}</text>
+    </view>
+  </view>
+
+  <!-- 日历区 -->
+  <view class="record-header">
+    <text>本月日历</text>
+  </view>
+  <view class="calendar-list">
+    <view class="calendar-week">
+      <text wx:for="{{weekDays}}" wx:key="index">{{item}}</text>
+    </view>
+    <view class="calendar-days">
+      <view class="calendar-day {{item.isToday ? 'today' : ''}}" wx:for="{{days}}" wx:key="index" bindtap="onDayTap" data-date="{{item.date}}">
+        <text>{{item.day}}</text>
+      </view>
+    </view>
+  </view>
+</view> 

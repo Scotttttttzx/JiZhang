@@ -1,0 +1,41 @@
+<!--today-detail.wxml-->
+<view class="main-container">
+  <view class="top-card">
+    <view class="top-card-header">
+      <view class="date-text">{{detail.date}} {{detail.time}}</view>
+    </view>
+    <view class="divider"></view>
+    <view class="summary-row">
+      <view class="summary-item">
+        <text class="summary-label">类型</text>
+        <text class="summary-value">{{detail.type === 'expense' ? '支出' : '收入'}}</text>
+      </view>
+      <view class="summary-item">
+        <text class="summary-label">金额</text>
+        <text class="summary-value {{detail.type === 'expense' ? 'out' : 'in'}}">{{detail.type === 'expense' ? '-' : '+'}}{{detail.amount}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="record-header">
+    <text>分类：{{detail.category.name}}</text>
+  </view>
+  <view class="record-list">
+    <view class="record-item">
+      <view class="record-left">
+        <text class="record-icon">{{detail.category.icon}}</text>
+        <view class="record-info">
+          <text class="record-category">{{detail.category.name}}</text>
+          <text class="record-remark" wx:if="{{detail.remark}}">备注：{{detail.remark}}</text>
+        </view>
+      </view>
+      <view class="record-right">
+        <text class="record-amount {{detail.type === 'expense' ? 'out' : 'in'}}">
+          {{detail.type === 'expense' ? '-' : '+'}}{{detail.amount}}
+        </text>
+        <view class="delete-btn" catchtap="onDeleteRecord" data-record="{{detail}}">
+          <text class="delete-icon">🗑️</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view> 

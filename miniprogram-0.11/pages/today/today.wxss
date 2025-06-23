@@ -1,0 +1,71 @@
+@import "../index/index.wxss";
+
+/* 可根据需要添加今日明细页面的专属样式 */
+
+/* 今日明细页面专属样式 */
+
+/* 记录数量显示 */
+.record-count {
+  font-size: 24rpx;
+  color: #888;
+  margin-left: 8rpx;
+}
+
+/* 头部操作区域 */
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+/* 测试按钮样式 */
+.test-btn {
+  display: flex;
+  align-items: center;
+  background: #ffc107;
+  padding: 8rpx 16rpx;
+  border-radius: 12rpx;
+  margin-left: 12rpx;
+  transition: background-color 0.2s ease;
+}
+
+.test-btn:active {
+  background-color: #e0a800;
+}
+
+.test-icon {
+  font-size: 24rpx;
+  margin-right: 6rpx;
+}
+
+.test-text {
+  font-size: 24rpx;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* 无记录提示样式 */
+.no-record {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 40rpx;
+  text-align: center;
+}
+
+.no-record-icon {
+  font-size: 80rpx;
+  margin-bottom: 24rpx;
+  opacity: 0.6;
+}
+
+.no-record-text {
+  font-size: 32rpx;
+  color: #666;
+  margin-bottom: 16rpx;
+}
+
+.no-record-desc {
+  font-size: 26rpx;
+  color: #999;
+  line-height: 1.5;
+} 

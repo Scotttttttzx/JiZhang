@@ -1,0 +1,434 @@
+/* pages/saving/saving.wxss */
+page {
+  background: #fafbfc;
+  min-height: 100vh;
+}
+
+.container {
+  padding: 24rpx;
+  padding-bottom: 120rpx;
+}
+
+/* 顶部总存钱卡片 */
+.total-saving-card {
+  background: #fff;
+  border-radius: 18rpx;
+  box-shadow: 0 2rpx 16rpx 0 rgba(0,0,0,0.06);
+  padding: 36rpx 24rpx;
+  margin-bottom: 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.total-saving-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.total-saving-label {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+
+.total-saving-value {
+  font-size: 48rpx;
+  color: #27c27c;
+  font-weight: 700;
+}
+
+.total-saving-subtitle {
+  font-size: 24rpx;
+  color: #888;
+}
+
+/* 区域标题 */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: 600;
+}
+
+.add-goal-btn {
+  display: flex;
+  align-items: center;
+  background: #ffb84d;
+  color: #fff;
+  padding: 12rpx 20rpx;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+}
+
+.add-icon {
+  font-size: 28rpx;
+  margin-right: 8rpx;
+  font-weight: 700;
+}
+
+.add-text {
+  font-weight: 500;
+}
+
+/* 存钱目标列表 */
+.goals-section {
+  margin-bottom: 40rpx;
+}
+
+.goals-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.no-goals {
+  background: #fff;
+  border-radius: 18rpx;
+  padding: 80rpx 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2rpx 16rpx 0 rgba(0,0,0,0.06);
+}
+
+.no-goals-icon {
+  font-size: 80rpx;
+  margin-bottom: 24rpx;
+}
+
+.no-goals-text {
+  font-size: 32rpx;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+
+.no-goals-desc {
+  font-size: 26rpx;
+  color: #888;
+  text-align: center;
+}
+
+.goal-item {
+  background: #fff;
+  border-radius: 18rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2rpx 16rpx 0 rgba(0,0,0,0.06);
+}
+
+.goal-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.goal-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  margin-right: 20rpx;
+}
+
+.goal-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.goal-name {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+.goal-progress {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 12rpx;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8rpx;
+  background: #f2f2f2;
+  border-radius: 4rpx;
+  overflow: hidden;
+  margin-bottom: 8rpx;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #27c27c;
+  border-radius: 4rpx;
+  transition: width 0.3s ease;
+}
+
+.goal-deadline {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.goal-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.goal-percentage {
+  font-size: 28rpx;
+  color: #27c27c;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+}
+
+.goal-actions {
+  display: flex;
+  gap: 12rpx;
+}
+
+.action-btn {
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+}
+
+.save-btn {
+  background: #27c27c;
+  color: #fff;
+}
+
+.delete-btn {
+  background: #ff5a5f;
+  color: #fff;
+}
+
+/* 存钱记录区域 */
+.records-section {
+  margin-bottom: 40rpx;
+}
+
+.records-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.no-records {
+  background: #fff;
+  border-radius: 18rpx;
+  padding: 40rpx;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2rpx 16rpx 0 rgba(0,0,0,0.06);
+}
+
+.no-records-text {
+  font-size: 28rpx;
+  color: #888;
+}
+
+.record-item {
+  background: #fff;
+  border-radius: 18rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2rpx 16rpx 0 rgba(0,0,0,0.06);
+}
+
+.record-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.record-icon {
+  font-size: 40rpx;
+  margin-right: 20rpx;
+}
+
+.record-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.record-goal {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 4rpx;
+}
+
+.record-remark {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 4rpx;
+}
+
+.record-time {
+  font-size: 22rpx;
+  color: #ccc;
+}
+
+.record-right {
+  display: flex;
+  align-items: center;
+}
+
+.record-amount {
+  font-size: 32rpx;
+  color: #27c27c;
+  font-weight: 600;
+}
+
+/* 弹窗样式 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  width: 90vw;
+  max-width: 600rpx;
+  background: #fff;
+  border-radius: 18rpx;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32rpx 24rpx;
+  border-bottom: 2rpx solid #f2f2f2;
+}
+
+.modal-title {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: 600;
+}
+
+.modal-close {
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  color: #999;
+}
+
+.modal-body {
+  padding: 32rpx 24rpx;
+}
+
+.form-item {
+  margin-bottom: 32rpx;
+}
+
+.form-label {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 16rpx;
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  height: 80rpx;
+  border: 2rpx solid #f2f2f2;
+  border-radius: 12rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.amount-input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 2rpx solid #f2f2f2;
+  border-radius: 12rpx;
+  padding: 0 24rpx;
+  height: 80rpx;
+}
+
+.currency {
+  font-size: 28rpx;
+  color: #333;
+  margin-right: 16rpx;
+}
+
+.amount-input {
+  flex: 1;
+  height: 100%;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.picker-input {
+  width: 100%;
+  height: 80rpx;
+  border: 2rpx solid #f2f2f2;
+  border-radius: 12rpx;
+  padding: 0 24rpx;
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.placeholder {
+  color: #999;
+}
+
+.modal-footer {
+  display: flex;
+  border-top: 2rpx solid #f2f2f2;
+}
+
+.cancel-btn, .confirm-btn {
+  flex: 1;
+  height: 88rpx;
+  border: none;
+  font-size: 28rpx;
+  border-radius: 0;
+}
+
+.cancel-btn {
+  background: #f8f9fa;
+  color: #666;
+}
+
+.confirm-btn {
+  background: #27c27c;
+  color: #fff;
+} 
