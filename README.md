@@ -25,7 +25,8 @@
 4. 查看结果 → 可保存或导出对话
 
 ## 项目链接
-- 微信小程序预览地址：pages/index/index
+- 微信小程序预览地址：![8597300b30de3a4dc42f08a7ac69b1a](https://github.com/user-attachments/assets/b37c3d73-a13d-4aca-bb5e-84caf75f40e8)
+
 - GitHub 项目仓库：(https://github.com/Scotttttttzx/JiZhang)
 
 ## 智能体设定摘要
